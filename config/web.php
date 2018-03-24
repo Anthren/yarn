@@ -61,13 +61,45 @@ $config = [
                 ],
             ],
         ],
+        'formatter' => [
+            'dateFormat' => 'php:Y-m-d',
+            'timeFormat' => 'php:H:i:s',
+            'datetimeFormat' => 'php:Y-m-d H:i:s',
+            'decimalSeparator' => '.',
+            'thousandSeparator' => ' ',
+        ],
     ],
     'modules' => [
        'gridview' =>  [
             'class' => '\kartik\grid\Module'
-            // 'downloadAction' => 'gridview/export/download',
-            // 'i18n' => []
-        ]
+        ],
+        'datecontrol' => [
+            'class' => 'kartik\datecontrol\Module',
+            // format settings for displaying each date attribute
+            'displaySettings' => [
+                'date' => 'php:d.m.Y',
+                'time' => 'php:H:i:s',
+                'datetime' => 'php:d.m.Y H:i:s',
+            ],
+            // format settings for saving each date attribute
+            'saveSettings' => [
+                'date' => 'php:Y-m-d',
+                'time' => 'php:H:i:s',
+                'datetime' => 'php:Y-m-d H:i:s',
+            ],
+            //'displayTimezone' => 'Europe/Samara',
+            //'saveTimezone' => 'UTC',
+            // automatically use kartik\widgets for each of the above formats
+            'autoWidget' => true,
+            // use ajax conversion for processing dates from display format to save format.
+            'ajaxConversion' => true,
+            // default settings for each widget from kartik\widgets used when autoWidget is true
+            'autoWidgetSettings' => [
+                'date' => [ 'type' => 2, 'pluginOptions' => ['autoclose' => true]],
+                'time' => [ 'pluginOptions' => ['autoclose' => true]],
+                'datetime' => [ 'pluginOptions' => ['autoclose' => true]],
+            ],
+        ],
     ],
     'params' => $params,
 ];
@@ -84,6 +116,10 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'generators' => [
+            'venec-gii-model' => ['class' => 'app\modules\gii\model\Generator'],
+            'venec-gii-crud'  => ['class' => 'app\modules\gii\crud\Generator'],
+        ],
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];

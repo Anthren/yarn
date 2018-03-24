@@ -2,10 +2,8 @@
 
 namespace app\models\base;
 
-use Yii;
-
 /**
- * This is the model class for table "yarn_kind".
+ * This is the base model class for table "yarn_kind".
  *
  * @property int $id
  * @property string $name Наименование
@@ -42,9 +40,9 @@ class YarnKind extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'name' => Yii::t('app', 'Наименование'),
-            'hook' => Yii::t('app', 'Размер крючка'),
+            'id' => 'ID',
+            'name' => 'Наименование',
+            'hook' => 'Размер крючка',
         ];
     }
 

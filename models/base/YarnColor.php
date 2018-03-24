@@ -5,7 +5,7 @@ namespace app\models\base;
 use Yii;
 
 /**
- * This is the model class for table "yarn_color".
+ * This is the base model class for table "yarn_color".
  *
  * @property int $id
  * @property int $yarn_kind_id Вид
@@ -44,10 +44,10 @@ class YarnColor extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'yarn_kind_id' => Yii::t('app', 'Вид'),
-            'color_hex' => Yii::t('app', 'Код цвета'),
-            'color_name' => Yii::t('app', 'Название цвета'),
+            'id' => 'ID',
+            'yarn_kind_id' => 'Вид',
+            'color_hex' => 'Код цвета',
+            'color_name' => 'Название цвета',
         ];
     }
 

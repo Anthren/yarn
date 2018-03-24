@@ -12,6 +12,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Yarn Colors'), 'url'
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
+
 <div class="yarn-color-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -19,5 +20,5 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
-
+    
 </div>

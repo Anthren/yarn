@@ -1,8 +1,11 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
 use yii\widgets\Pjax;
+use app\components\widgets\DataColumn;
+use app\components\widgets\GridView;
+//use yii\grid\GridView;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\YarnKindSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -10,24 +13,38 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Yarn Kinds');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="yarn-kind-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Yarn Kind'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('<i class="glyphicon glyphicon-plus"></i> '.Yii::t('app', 'Create Yarn Kind'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <br>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'name',
-            'hook',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'app\components\widgets\SerialColumn',
+            ],
+            [
+                'class' => 'app\components\widgets\DataColumn',
+                'attribute' => 'name',
+                'width' => '400px'
+            ],
+            [
+                'class' => 'app\components\widgets\DataColumn',
+                'attribute' => 'hook',
+                'fieldShowType' => DataColumn::TYPE_DECIMAL2,
+            ],
+            [
+                'class' => 'app\components\widgets\ActionColumn',
+                'url' => 'yarn-kind/',
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>

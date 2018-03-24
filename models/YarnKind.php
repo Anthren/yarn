@@ -3,11 +3,30 @@
 namespace app\models;
 
 use yii\helpers\ArrayHelper;
-use app\models\base\YarnKind as BaseYarnKind;
 
-class YarnKind extends BaseYarnKind
+class YarnKind extends base\YarnKind
 {
-    function all() {
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return array_merge(parent::attributeLabels(), [
+            // add additional translations
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return array_merge(parent::rules(), [
+            // add additional rules
+        ]);
+    }
+    
+    public static function getList() {
         return ArrayHelper::map(YarnKind::find()->orderBy('name')->asArray()->all(), 'id', 'name');
     }
 }
